@@ -1,0 +1,19 @@
+.el_btn {
+  display: inline-block;
+  padding: 24px 40px;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &__reset {
+    color: #fff;
+    background-color: #42b893;
+    font-weight: bold;
+    transition: all 0.3s;
+
+    &:hover {
+      background-color: #4aca91;
+      position: relative;
+      top: 2px;
+    }
+  }
+}

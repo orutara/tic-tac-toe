@@ -1,0 +1,27 @@
+.bl_field {
+  padding: 24px 0;
+  background-color: #8ed5b5;
+
+  .bl_field_inner {
+    margin: 0 auto;
+  }
+
+  .bl_field_box_wrapper {
+    width: 302px;
+    height: 302px;
+    display: flex;
+    flex-wrap: wrap;
+    border: solid 4px #42b893;
+    border-radius: 8px;
+    margin: 0 auto;
+  }
+
+
+  .bl_field_box {
+    position: relative;
+    width: calc(294px / 3);
+    height: calc(294px / 3);
+    border: solid 4px #42b893;
+    cursor: pointer;
+  }
+}

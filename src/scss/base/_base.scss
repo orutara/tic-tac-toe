@@ -1,0 +1,25 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+body {
+  margin: 0;
+  font-family:"Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;
+}
+ul {
+  padding: 0;
+  margin-bottom: 0;
+}
+li {
+  list-style: none;
+}
+.container {
+  max-width: 660px !important;
+}
+
+.js_hidden {
+  display: none;
+}

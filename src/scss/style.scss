@@ -1,0 +1,53 @@
+@use 'base/base';
+@use 'component/el_btn';
+@use 'component/bl_ttl';
+@use 'component/bl_order';
+@use 'component/bl_message';
+@use 'component/bl_field';
+@use 'component/bl_reset';
+@use 'component/ly_tic-tac-toe';
+
+
+.js_maru-checked::before {
+  content: '';
+  width: 50px;
+  height: 50px;
+  border: solid 8px #ff0000;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.js_batsu-checked::before {
+  content: '';
+  width: 50px;
+  height: 8px;
+  margin: auto;
+  background-color: #00b0f0;
+  border-radius: 4px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.js_batsu-checked::after {
+  content: '';
+  width: 8px;
+  height: 50px;
+  margin: auto;
+  background-color: #00b0f0;
+  border-radius: 4px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* JS連動 */
+.js_unclickable {
+  pointer-events: none;
+}
+.js_highLight {
+  background-color: #fff2cc;
+}

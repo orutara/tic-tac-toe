@@ -1,0 +1,20 @@
+.bl_message {
+  padding-bottom: 24px;
+  font-size: 1rem;
+  font-weight: bold;
+  user-select: none;
+
+  .bl_message_inner {
+    text-align: center;
+  }
+
+  .bl_icon {
+    &__circle {
+      color: #ff0000;
+    }
+    
+    &__cross {
+      color: #00b0f0;
+    }
+  }
+}

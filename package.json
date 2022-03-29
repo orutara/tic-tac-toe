@@ -1,0 +1,39 @@
+{
+  "name": "tic-tac-toe",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".prettierrc.js",
+  "scripts": {
+    "html:copy": "cpx -C src/html/** dist",
+    "html": "npm-run-all -s html:*",
+    "css:sass": "sass src/scss/:dist/css/ --no-source-map --watch",
+    "css:postcss": "postcss dist/css/style.css -o dist/css/style.min.css",
+    "css": "npm-run-all -s css:*",
+    "js:babel": "./node_modules/.bin/babel ./src/js --out-dir ./dist/js",
+    "js:uglifyjs": "uglifyjs dist/js/index.js -o dist/js/index.min.js",
+    "js": "npm-run-all -s js:*",
+    "image": "cpx -C src/images/** dist/images",
+    "watch:html": "watch 'npm run html' ./src/html",
+    "watch:css": "watch 'npm run css' ./src/scss",
+    "watch:js": "watch 'npm run js' ./src/js",
+    "watch:image": "watch 'npm run image' ./src/images",
+    "watch:server": "browser-sync start --server dist --files 'dist, **/*.html, !node_modules/**/*'",
+    "watch": "npm-run-all -p watch:*"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.4",
+    "babel-cli": "^6.26.0",
+    "browser-sync": "^2.27.9",
+    "cpx": "^1.5.0",
+    "cssnano": "^5.1.4",
+    "npm": "^8.5.5",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^9.1.0",
+    "sass": "^1.49.9",
+    "uglify-js": "^3.15.3",
+    "watch": "^1.0.2"
+  }
+}

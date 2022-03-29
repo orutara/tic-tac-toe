@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+  <title>○×ゲーム</title>
+</head>
+
+<body>
+
+  <div class="ly_ticTacToe">
+    <div class="ly_ticTacToe_inner">
+
+      <div class="bl_ttl">
+        <h1><img src="images/img/img_tictactoe.svg" alt="Tic-Tac-Toe"></h1>
+      </div>
+
+      <div class="bl_order">
+        <div class="container">
+          <div class="bl_order_inner">
+            <div class="row">
+              <div class="col-6">
+                <div class="box turn">
+                  <div class="wrap">
+                    <img src="images/icon/icon_circle.svg" alt="">
+                    <span class="bl_order_gameCount bl_order_gameCount__circle"></span>
+                  </div>
+                </div>
+              </div>
+              <!-- /.col-6 -->
+              <div class="col-6">
+                <div class="box">
+                  <div class="wrap">
+                    <img src="images/icon/icon_cross.svg" alt="">
+                    <span class="bl_order_gameCount bl_order_gameCount__cross">0</span>
+                  </div>
+                </div>
+              </div>
+              <!-- /.col-6 -->
+            </div>
+            <!-- /.row -->
+          </div>
+          <!-- /.bl_order_inner -->
+        </div>
+        <!-- /.bl_container -->
+      </div>
+      <!-- /.bl_order -->
+
+      <div class="bl_message">
+        <div class="container">
+          <div class="bl_message_inner">
+            <ul class="bl_message_List">
+              <li id="js_turn__gameStart" class="bl_message_turnText js_hidden">
+                <span>最初の一手をクリックしてゲームスタート!</span>
+              </li>
+              <li id="js_turn__circle" class="bl_message_turnText js_hidden">
+                <span class="bl_icon__circle">○</span>の番
+              </li>
+              <li id="js_turn__cross" class="bl_message_turnText js_hidden">
+                <span class="bl_icon__cross">×</span>の番
+              </li>
+              <li id="js_win__circle" class="bl_message_turnText js_hidden">
+                <span class="bl_icon__circle">○</span>の勝ち！
+              </li>
+              <li id="js_win__cross" class="bl_message_turnText js_hidden">
+                <span class="bl_icon__cross">×</span>の勝ち！
+              </li>
+              <li id="js_draw" class="bl_message_turnText js_hidden">
+                引き分け
+              </li>
+            </ul>
+            <!-- /.bl_messageList -->
+          </div>
+          <!-- /.bl_message_inner -->
+        </div>
+        <!-- /.container -->
+      </div>
+      <!-- /.bl_message -->
+
+      <div class="bl_field">
+        <div class="container">
+          <div class="bl_field_inner">
+            <div class="bl_field_box_wrapper">
+              <!-- 1行め -->
+              <div id="1-1" class="bl_field_box"></div>
+              <div id="1-2" class="bl_field_box"></div>
+              <div id="1-3" class="bl_field_box"></div>
+              <!-- 2行め -->
+              <div id="2-1" class="bl_field_box"></div>
+              <div id="2-2" class="bl_field_box"></div>
+              <div id="2-3" class="bl_field_box"></div>
+              <!-- 3行め -->
+              <div id="3-1" class="bl_field_box"></div>
+              <div id="3-2" class="bl_field_box"></div>
+              <div id="3-3" class="bl_field_box"></div>
+            </div>
+          </div>
+          <!-- /.bl_field_inner -->
+        </div>
+        <!-- /.container -->
+      </div>
+      <!-- /.bl_field -->
+
+      <div class="bl_reset">
+        <span id="js_reset" class="el_btn el_btn__reset">
+          <img src="images/img/img_restartgame.svg" alt="Restart Game">
+        </span>
+      </div>
+      <!-- /.bl_reset -->
+
+    </div>
+    <!-- /.ly_ticTacToe_inner -->
+  </div>
+  <!-- /.ly_ticTacToe -->
+
+  <script src="js/index.js"></script>
+</body>
+
+</html>
