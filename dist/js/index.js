@@ -4,41 +4,90 @@
 // import { markSign } from './modules/markSign';
 // import { initScore } from './modules/initScore';
 
-
 // 各種定義
 let flag = false;
 let counter = 9;
 let scoreCounterCircle = 0;
 let scoreCounterCross = 0;
+const scoreCircleCount = document.querySelector('.bl_order_gameCount__circle');
+const scoreCrossCount = document.querySelector('.bl_order_gameCount__cross');
 let winningLine = null;
 const fieldBoxes = document.querySelectorAll('.bl_field_box');
 const fieldBoxesArray = [].map.call(fieldBoxes, element => {
   return element;
 });
-// const squaresArray = [].slice.call(squares); // IE11対策
 const messages = document.querySelectorAll('.bl_message_turnText');
-// const messagesArray = [].slice.call(messages); // IE11対策
 const resetBtn = document.getElementById('js_reset');
-let scoreCircle = document.querySelector('.bl_order_gameCount__circle');
-let scoreCross = document.querySelector('.bl_order_gameCount__cross');
+const turnBarCross = document.querySelector('.box_cross');
+const turnBarCircle = document.querySelector('.box_circle');
 
 //localStrageからスコアを表示
 window.addEventListener('load', function () {
-  if (scoreCircle.innerText === '') {
-    scoreCircle.innerHTML = '-';
+  let scoreCircle = this.localStorage.getItem('scoreCircle');
+  let scoreCross = this.localStorage.getItem('scoreCross');
+  if (scoreCircle) {
+    scoreCounterCircle = scoreCircle;
+    scoreCircleCount.textContent = scoreCounterCircle;
   } else {
-    localStorage.setItem('scoreCircle', '');
+    localStorage.setItem('scoreCircle', scoreCounterCircle);
+  }
+  if (scoreCross) {
+    scoreCounterCross = scoreCross;
+    scoreCrossCount.textContent = scoreCounterCross;
+  } else {
+    localStorage.setItem('scoreCross', scoreCounterCross);
   }
 });
-//localStrageに保存
-
-//ターンバーの切り替え関数
-const switchBar = () => {
-  const turnBar = document.querySelector('.box.turn');
-  console.log(turnBar);
+//
+const saveLocalstrage = () => {
+  localStorage.setItem('scoreCircle', scoreCounterCircle);
+  localStorage.setItem('scoreCross', scoreCounterCross);
 };
-switchBar();
-console.log(messages);
+
+//勝利スコアの加算関数
+const addScore = () => {
+  let scoreCircle = document.querySelector('.bl_order_gameCount__circle');
+  let scoreCross = document.querySelector('.bl_order_gameCount__cross');
+  console.log(scoreCircle);
+  scoreCircle.textContent = scoreCounterCircle;
+  scoreCross.textContent = scoreCounterCross;
+};
+
+// //ターンバーの切り替え関数
+// const switchBar = () => {
+//   const turnBarCircle = document.querySelector('.box_circle')
+//   const turnBarCross = document.querySelector('.box_cross')
+// }
+const switchBarCircle = () => {
+  if (turnBarCircle.classList.contains('turn')) {
+    turnBarCircle.classList.remove('turn');
+  } else {
+    turnBarCircle.classList.add('turn');
+  }
+};
+const switchBarCross = () => {
+  if (turnBarCross.classList.contains('turn')) {
+    turnBarCross.classList.remove('turn');
+  } else {
+    turnBarCross.classList.add('turn');
+  }
+};
+const switchBarInit = () => {
+  if (!turnBarCircle.classList.contains('turn')) {
+    turnBarCircle.classList.add('turn');
+  }
+  if (turnBarCross.classList.contains('turn')) {
+    turnBarCross.classList.remove('turn');
+  }
+};
+const removeSwitchBar = () => {
+  if (turnBarCircle.classList.contains('turn')) {
+    turnBarCircle.classList.remove('turn');
+  }
+  if (turnBarCross.classList.contains('turn')) {
+    turnBarCross.classList.remove('turn');
+  }
+};
 
 // メッセージの切り替え関数
 const switchMessage = id => {
@@ -95,18 +144,8 @@ const finishGame = () => {
   // 全てのマスをクリック不可にする
   fieldBoxesArray.forEach(fieldBox => {
     fieldBox.classList.add('js_unclickable');
-    console.log('ok');
   });
-
-  // 勝った時のマス目をハイライトする
-  // if (winningLine) {
-  //     winningLine.forEach((square) => {
-  //         square.classList.add('js-highLight');
-  //     });
-  // }
-
-  // リセットボタン表示
-  // resetBtn.classList.remove('js-hidden');
+  removeSwitchBar();
 };
 
 // ゲームの初期化の関数
@@ -118,27 +157,30 @@ const initGame = () => {
     fieldBox.classList.remove('js_maru-checked');
     fieldBox.classList.remove('js_batsu-checked');
     fieldBox.classList.remove('js_unclickable');
-    // fieldBox.classList.remove('js_highLight');
   });
   switchMessage('js_turn__gameStart');
-  // resetBtn.classList.add('js-hidden');
+  switchBarInit();
+  addScore();
+  saveLocalstrage();
 };
 resetBtn.addEventListener('click', function () {
   initGame();
 });
 
 // マスをクリックした時のイベント発火
-
 const markSign = () => {
   fieldBoxes.forEach(fieldBox => {
     fieldBox.addEventListener('click', () => {
       if (flag === true) {
         fieldBox.classList.add('js_batsu-checked');
         fieldBox.classList.add('js_unclickable');
+        switchBarCross();
+        switchBarCircle();
 
         if (resultWin('batsu')) {
           switchMessage('js_win__cross');
           scoreCounterCross++;
+          addScore();
           finishGame();
           return;
         }
@@ -148,9 +190,13 @@ const markSign = () => {
       } else {
         fieldBox.classList.add('js_maru-checked');
         fieldBox.classList.add('js_unclickable');
+        switchBarCross();
+        switchBarCircle();
+
         if (resultWin('maru')) {
           switchMessage('js_win__circle');
           scoreCounterCircle++;
+          addScore();
           finishGame();
           return;
         }
@@ -175,6 +221,6 @@ markSign();
 // クリックして○✖︎をつける ✅
 // 勝ち負けを判断する ✅
 // メッセージの切り替え ✅
-// ゲームの状況をデータとして保存
-// ローカルストレージにゲームのスコアを保存
+// ゲームの状況をデータとして保存 ✅
+// ローカルストレージにゲームのスコアを保存 ✅
 // 敵のアルゴリズムを作る
